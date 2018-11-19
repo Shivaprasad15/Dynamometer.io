@@ -7,7 +7,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="JavaScript.js"></script>
+  <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  
    <style>
 body, html {
     height: 100%;
@@ -18,24 +19,38 @@ body, html {
     background-image: url("https://us.123rf.com/450wm/yamabikay/yamabikay1706/yamabikay170600003/79675824-luxury-black-leather-texture-seamless-square-background-tile-ready-high-resolution-photo-.jpg?ver=6");
     
 }
+
+.logo img{
+            width:150px;
+            height:auto;
+            float:left;
+            margin-left: 20px;
+        }
+
 </style>
   </head>
   <body class="bg">
 	<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">  <img src="https://cdn-dreammachine.sistemaip.net/media/catalog/product/cache/1/image/1024x/040ec09b1e35df139433887a97daa66f/d/y/dynojet_1_25.png" class="img-rounded" alt="Cinque Terre" width="304" height="236"> 
+      <a class="navbar-brand" href="#" >  <div class="logo"><img src="https://www.american-motors-online.com/WebRoot/Store2/Shops/61864817/517E/D403/8D8D/963B/C390/C0A8/28B8/CDAF/dyno_jet_logo_m.gif"></div> 
 </a>
     </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Page 1</a></li>
-      <li><a href="#">Page 2</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
+    
+	<ul class="nav navbar-nav navbar-right">
       <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
       <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>
+	
+	<ul class="nav navbar-nav navbar-right">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Page 1</a></li>
+      
+    </ul>
+    
   </div>
 </nav>
+
+<center><canvas id="canvas"></canvas></center>
+<script src="JavaScript.js"></script>
   </body>
