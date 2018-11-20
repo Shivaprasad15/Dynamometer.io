@@ -14,6 +14,15 @@
   <script>
 window.onload = function () {
 
+var rpm,hp,tw,t;
+var e1={0.1: 116, 0.2: 135, 0.3: 148, 0.4: 157 , 0.5: 199 , 0.6: 176, 0.7:188 , 0.8: 184, 0.9: 160, 1.01: 120};    //Engine torque at specific  Engine rpm 
+	 
+	 
+	 var GearRatio={1:2.18, 2:1.19,3:3.298};                        // Transmission Gear ratio
+	 var DiffRatio={1:3.960, 2:2.462,3:4.029};                     // Differential Gear ratio
+	 var Tyre={1:0.3302, 2:0.3683, 3:0.4064, 4:0.4445};
+
+ 
 var dataPoints1 = [];
 var dataPoints2 = [];
 
@@ -42,7 +51,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	data: [{ 
 		type: "line",
 		xValueType: "float",
-		//yValueFormatString: "",
+		yValueFormatString: "####.0",
 		xValueFormatString: "#### RPM",
 		showInLegend: true,
 		name: "HorsePower",
@@ -51,7 +60,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		{				
 			type: "line",
 			xValueType: "float",
-			//yValueFormatString: "$####.00",
+			yValueFormatString: "####.00",
 			showInLegend: true,
 			name: "Torque" ,
 			dataPoints: dataPoints2
@@ -70,13 +79,11 @@ function toggleDataSeries(e) {
 
 
 
-
-
-function updateChart(rpm,hp,tw) {
+function updateChart(r,h,t) {
 	 var rpm,hp,tw;
-	  rpm=rpm*10000;
-	  hp=hp;
-	  tw=tw;
+	  rpm=r*10000;
+	  hp=h;
+	  tw=t;
 	  
 
 	// adding random value and rounding it to two digits. 
@@ -96,13 +103,65 @@ function updateChart(rpm,hp,tw) {
 
 	// updating legend text with  updated with y Value 
 	chart.options.data[0].legendText = "HP " + yValue1;
-	chart.options.data[1].legendText = "Torque " + yValue2; 
+	chart.options.data[1].legendText = "Torque " + yValue2 + " Nm"; 
 	chart.render();
 }
+
+
+
+
+
+
+
 // generates first set of dataPoints 
 updateChart(.05,0,0);	
 
+function dyno(){
+rpm+=0.1;
+if(rpm>0.9){
+tw=((e1[1.01]*GearRatio[2]*DiffRatio[3])/2);
+		hp=((tw*(1*10000))/5252);
+		updateChart(1,hp,tw);	
+		drawSpeedo(180,5,1, 240);
+window.clearInterval(t);
+
+
 }
+else{
+tw=((e1[rpm]*GearRatio[2]*DiffRatio[3])/2);
+		hp=((tw*(rpm*10000))/5252);
+		updateChart(rpm,hp,tw);	
+		drawSpeedo(180,5,rpm, 240);
+}
+
+}
+
+
+
+function running(){
+       rpm=0;
+	   
+ t=setInterval(dyno,1000);
+if(rpm>1){
+window.clearInterval(t);
+}
+}
+
+
+
+document.getElementById("run").onclick = function() {running()};
+}
+		
+	
+
+
+
+var s=0;
+
+
+
+
+
 </script>
   
   
@@ -187,7 +246,7 @@ margin:5px;
 						<span class="glyphicon glyphicon-road"></span> Chassis
 						</a>
 					</td>
-					<a href="numbers.html" class="btn btn-danger btn-lg">
+					<a  class="btn btn-danger btn-lg" onclick="dyno()">
 						<span class="glyphicon glyphicon-gift"></span> Engine
 						</a></td>
 					<a href="numbers.html" class="btn btn-danger btn-lg">
@@ -195,7 +254,10 @@ margin:5px;
 						</a></td></td>
 					<a href="numbers.html" class="btn btn-danger btn-lg">
 						<span class="glyphicon glyphicon-cd"></span> Tyres
-						</a></td></td></td>
+						</a></td></td></td><br>
+						
+						
+						
 
 				
 			
@@ -204,6 +266,12 @@ margin:5px;
 			
 			
 		<div id="chartContainer" style="height: 370px; max-width: 920px; margin: 10px;"></div>
+		
+		<input type="button"  id="run" class="btn btn-warning btn-lg"  value="Run">
+		<center><canvas id="canvas"></canvas></center>
+
+
+<script src="JavaScript.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>	
 
 
@@ -213,10 +281,9 @@ margin:5px;
 <div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
 
 
-<
 
 
 
-<center><canvas id="canvas"></canvas></center>
-<script src="JavaScript.js"></script>
+
+
   </body>
