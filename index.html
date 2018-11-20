@@ -8,6 +8,114 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+ 
+  
+  
+  <script>
+window.onload = function () {
+
+var dataPoints1 = [];
+var dataPoints2 = [];
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	zoomEnabled: true,
+	title: {
+		text: "HorsePower & Torque"
+	},
+	axisX: {
+		title: "RPM"
+	},
+	axisY:{
+		prefix: "HP ",
+		includeZero: false
+	}, 
+	toolTip: {
+		shared: true
+	},
+	legend: {
+		cursor:"pointer",
+		verticalAlign: "top",
+		fontSize: 22,
+		fontColor: "dimGrey",
+		itemclick : toggleDataSeries
+	},
+	data: [{ 
+		type: "line",
+		xValueType: "float",
+		//yValueFormatString: "",
+		xValueFormatString: "#### RPM",
+		showInLegend: true,
+		name: "HorsePower",
+		dataPoints: dataPoints1
+		},
+		{				
+			type: "line",
+			xValueType: "float",
+			//yValueFormatString: "$####.00",
+			showInLegend: true,
+			name: "Torque" ,
+			dataPoints: dataPoints2
+	}]
+});
+
+function toggleDataSeries(e) {
+	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+		e.dataSeries.visible = false;
+	}
+	else {
+		e.dataSeries.visible = true;
+	}
+	chart.render();
+}
+
+
+
+
+
+function updateChart(rpm,hp,tw) {
+	 var rpm,hp,tw;
+	  rpm=rpm*10000;
+	  hp=hp;
+	  tw=tw;
+	  
+
+	// adding random value and rounding it to two digits. 
+	yValue1 = hp;
+	yValue2 = tw;
+
+	// pushing the new values
+	dataPoints1.push({
+		x: rpm,
+		y: yValue1
+	});
+	dataPoints2.push({
+		x: rpm,
+		y: yValue2
+	});
+	
+
+	// updating legend text with  updated with y Value 
+	chart.options.data[0].legendText = "HP " + yValue1;
+	chart.options.data[1].legendText = "Torque " + yValue2; 
+	chart.render();
+}
+// generates first set of dataPoints 
+updateChart(.05,0,0);	
+
+}
+</script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
    <style>
 
@@ -93,13 +201,21 @@ margin:5px;
 			
 			</center>
 		</form>
-
+			
+			
+		<div id="chartContainer" style="height: 370px; max-width: 920px; margin: 10px;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>	
 
 
 </center>
 
 </div>
-<div class="col-xs-1 col-md-1 col-sm-10 col-lg-10"></div>
+<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+
+
+<
+
+
 
 <center><canvas id="canvas"></canvas></center>
 <script src="JavaScript.js"></script>
