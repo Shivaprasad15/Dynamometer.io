@@ -14,8 +14,8 @@
   <script>
 window.onload = function () {
 
-var rpm,hp,tw,t;
-var e1={0.1: 116, 0.2: 135, 0.3: 148, 0.4: 157 , 0.5: 199 , 0.6: 176, 0.7:188 , 0.8: 184, 0.9: 160, 1.01: 120};    //Engine torque at specific  Engine rpm 
+var rpm,hp=0,tw,t,v,php=0,prpm=0;
+var e1={0 : 116, 1 : 119, 2 : 123, 3 : 130 , 4 : 136 , 5 : 142 , 6 : 147 , 7 : 153 , 8 : 160 , 9 : 164 , 10 : 170 , 11 : 173 , 12 : 177 , 13 : 181 , 14 : 188 , 15 : 180 , 16 : 171 , 17 : 153 , 18 : 133 , 19 : 122};    //Engine torque at specific  Engine rpm 
 	 
 	 
 	 var GearRatio={1:2.18, 2:1.19,3:3.298};                        // Transmission Gear ratio
@@ -50,8 +50,8 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	},
 	data: [{ 
 		type: "line",
-		xValueType: "float",
-		yValueFormatString: "####.0",
+		xValueType: "Number",
+		yValueFormatString: "####.0 HP",
 		xValueFormatString: "#### RPM",
 		showInLegend: true,
 		name: "HorsePower",
@@ -59,8 +59,8 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		},
 		{				
 			type: "line",
-			xValueType: "float",
-			yValueFormatString: "####.00",
+			xValueType: "Number",
+			yValueFormatString: "####.0 Nm",
 			showInLegend: true,
 			name: "Torque" ,
 			dataPoints: dataPoints2
@@ -114,13 +114,19 @@ function updateChart(r,h,t) {
 
 
 // generates first set of dataPoints 
-updateChart(.05,0,0);	
+//updateChart(.02,12,10);	
 
 function dyno(){
-rpm+=0.1;
-if(rpm>0.9){
-tw=((e1[1.01]*GearRatio[2]*DiffRatio[3])/2);
+rpm+=0.05;
+if(rpm>0.96){
+tw=((e1[19]*GearRatio[3]*DiffRatio[3])/2);
 		hp=((tw*(1*10000))/5252);
+		if(hp>php){
+			php=hp;
+			prpm=rpm*10000;
+		}
+		
+		
 		updateChart(1,hp,tw);	
 		drawSpeedo(180,5,1, 240);
 window.clearInterval(t);
@@ -128,8 +134,15 @@ window.clearInterval(t);
 
 }
 else{
-tw=((e1[rpm]*GearRatio[2]*DiffRatio[3])/2);
+tw=parseFloat((e1[v]*GearRatio[3]*DiffRatio[3])/2);
+v++;
+		
 		hp=((tw*(rpm*10000))/5252);
+		if(hp>php){
+			php=hp;
+			prpm=rpm*10000;
+		}
+		
 		updateChart(rpm,hp,tw);	
 		drawSpeedo(180,5,rpm, 240);
 }
@@ -140,8 +153,8 @@ tw=((e1[rpm]*GearRatio[2]*DiffRatio[3])/2);
 
 function running(){
        rpm=0;
-	   
- t=setInterval(dyno,1000);
+	   v=0;
+ t=setInterval(dyno,150);
 if(rpm>1){
 window.clearInterval(t);
 }
