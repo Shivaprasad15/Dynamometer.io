@@ -1,11 +1,22 @@
 'use strict';
-/*
-* TESLA HUD BY Tameem Imamdad timamdad@hawk.iit.edu
-*/
+
 
 let dev = false;
 //let t0 = 0;
 //let t1 = 0;
+
+	 var e1={0.1: 116, 0.2: 135, 0.3: 148, 0.4: 157 , 0.5: 168 , 0.6: 176, 0.7:184 , 0.8: 188, 0.9: 183, 1: 172};    //Engine torque at specific  Engine rpm 
+	 
+	 
+	 var GearRatio={1:2.18, 2:1.19,3:3.298};                        // Transmission Gear ratio
+	 var DiffRatio={1:3.960, 2:2.462,3:4.029};                     // Differential Gear ratio
+	 var Tyre={1:0.3302, 2:0.3683, 3:0.4064, 4:0.4445};           //Tyre Radius in meter
+
+
+
+
+
+
 
      var c = document.getElementById("canvas");
         c.width = 800;
@@ -24,6 +35,17 @@ let dev = false;
         rpmGradient.addColorStop(0, '#80ff33');
         rpmGradient.addColorStop(1, '#ff361a');
        //rpmGradient.addColorStop(1, '#EFfff6');
+	   
+	   
+	   
+	   
+
+	   
+	   
+	   
+	   
+	   
+	   
 
         function speedNeedle(rotation) {
             ctx.lineWidth = 2;
@@ -80,6 +102,9 @@ let dev = false;
             let radian = (degree * Math.PI) / 180;
             return radian >= -0.46153862656807704 ? radian : -0.46153862656807704;
         }
+		
+		
+		
 
         function drawSpeedo(speed, gear, rpm, topSpeed) {
             if (speed == undefined) {
@@ -173,6 +198,9 @@ let dev = false;
                     i / 10 : '');
                 }
             }
+			
+			
+			
 
             ctx.beginPath();
             ctx.strokeStyle = "#41dcf4";
@@ -202,20 +230,34 @@ let dev = false;
 
             ctx.strokeStyle = "#000";
         }
-        var s=0,rpm=.1;
-        function setSpeed(){
+        var s=0;
+        
+		
+		
+		function dyno(){
 			
-			if(s<240){
-			s+=.8;
-			rpm+=.01;
-			}
-			drawSpeedo(s,5,rpm,240);
+				
+			var tw,hp;
+			drawSpeedo(180,5, .2, 240);
+			
+			
+			//for(var rpm in e1){
+				
+			//tw=((e1[rpm]*GearRatio[2]*DiffRatio[2])/2);
+			//hp=((tw*(rpm*10000))/5252);
+			//updateChart(rpm,hp,tw);	
+			
+			
+			
+			//}
 		}
+		
 
 
 document.addEventListener('click', function() {
 
-    window.setInterval(setSpeed, 20);
+    window.setInterval(setSpeed, 100);
+	
     renderCanvas();
 	
     
