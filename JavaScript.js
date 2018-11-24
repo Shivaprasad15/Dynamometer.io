@@ -5,12 +5,7 @@ let dev = false;
 //let t0 = 0;
 //let t1 = 0;
 
-	 var e1={0.1: 116, 0.2: 135, 0.3: 148, 0.4: 157 , 0.5: 168 , 0.6: 176, 0.7:184 , 0.8: 188, 0.9: 183, 1: 172};    //Engine torque at specific  Engine rpm 
 	 
-	 
-	 var GearRatio={1:2.18, 2:1.19,3:3.298};                        // Transmission Gear ratio
-	 var DiffRatio={1:3.960, 2:2.462,3:4.029};                     // Differential Gear ratio
-	 var Tyre={1:0.3302, 2:0.3683, 3:0.4064, 4:0.4445};           //Tyre Radius in meter
 
 
 
@@ -19,8 +14,8 @@ let dev = false;
 
 
      var c = document.getElementById("canvas");
-        c.width = 800;
-        c.height =800;
+        c.width = 500;
+        c.height =550;
 
         var ctx = c.getContext("2d");
 
@@ -32,8 +27,8 @@ let dev = false;
         speedGradient.addColorStop(1, '#41dcf4');
 
         var rpmGradient = ctx.createLinearGradient(0, 500, 0, 0);
-        rpmGradient.addColorStop(0, '#80ff33');
-        rpmGradient.addColorStop(1, '#ff361a');
+       rpmGradient.addColorStop(0, '#f7b733');
+        rpmGradient.addColorStop(1, '#fc4a1a');
        //rpmGradient.addColorStop(1, '#EFfff6');
 	   
 	   
@@ -212,7 +207,7 @@ let dev = false;
             ctx.arc(250, 250, 228, .6 * Math.PI, calculateSpeedAngle(speed / topSpeed, 83.07888, 34.3775) * Math.PI);
             ctx.stroke();
             ctx.beginPath();
-            ctx.lineWidth = 13;
+            ctx.lineWidth = 17;
             ctx.strokeStyle = rpmGradient;
             ctx.shadowBlur = 20;
             ctx.shadowColor = "#f7b733";
@@ -254,8 +249,8 @@ let dev = false;
 		
 
 
-document.addEventListener('click', function() {
-
+document.addEventListener('DOMContentLoaded', function() {
+	drawSpeedo(180,5, .2, 240);
     window.setInterval(setSpeed, 100);
 	
     renderCanvas();
