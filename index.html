@@ -28,7 +28,7 @@ var dataPoints2 = [];
 
 var chart = new CanvasJS.Chart("chartContainer", {
 	zoomEnabled: true,
-	exportEnabled: true,
+	animationEnabled: true,
 	title: {
 		text: "Horse Power & Torque"
 	},
@@ -76,6 +76,7 @@ function toggleDataSeries(e) {
 	else {
 		e.dataSeries.visible = true;
 	}
+	
 	chart.render();
 }
 
@@ -154,6 +155,17 @@ v++;
 
 
 function running(){
+
+document.getElementById("exportChart").style.visibility="visible";
+document.getElementById("printChart").style.visibility="visible";
+
+
+
+
+
+document.getElementById("exportChart").disabled = false;
+document.getElementById("printChart").disabled = false;
+
        rpm=0;
 	   v=0;
  t=setInterval(dyno,150);
@@ -162,10 +174,15 @@ window.clearInterval(t);
 }
 }
 
+document.getElementById("exportChart").disabled = true;
+document.getElementById("printChart").disabled = true;
 
+
+document.getElementById("exportChart").style.visibility="hidden";
+document.getElementById("printChart").style.visibility="hidden";
 
 document.getElementById("run").onclick = function() {running()};
-
+	
  	document.getElementById("exportChart").addEventListener("click",function(){
     	chart.exportChart({format: "jpg"});
     });  
