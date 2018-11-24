@@ -20,7 +20,7 @@ var e1={0 : 116, 1 : 119, 2 : 123, 3 : 130 , 4 : 136 , 5 : 142 , 6 : 147 , 7 : 1
 	 
 	 var GearRatio={1:2.18, 2:1.19,3:3.298};                        // Transmission Gear ratio
 	 var DiffRatio={1:3.960, 2:2.462,3:4.029};                     // Differential Gear ratio
-	 var Tyre={1:0.3302, 2:0.3683, 3:0.4064, 4:0.4445};
+	 var Tyre={1:0.3302, 2:0.3683, 3:0.4064, 4:0.4445};           // Tyre Size
 
  
 var dataPoints1 = [];
@@ -28,14 +28,16 @@ var dataPoints2 = [];
 
 var chart = new CanvasJS.Chart("chartContainer", {
 	zoomEnabled: true,
+	exportEnabled: true,
 	title: {
-		text: "HorsePower & Torque"
+		text: "Horse Power & Torque"
 	},
 	axisX: {
 		title: "RPM"
 	},
 	axisY:{
 		prefix: "HP ",
+		title: "Horse Power",
 		includeZero: false
 	}, 
 	toolTip: {
@@ -114,7 +116,7 @@ function updateChart(r,h,t) {
 
 
 // generates first set of dataPoints 
-//updateChart(.02,12,10);	
+updateChart(NaN,NaN,NaN);	
 
 function dyno(){
 rpm+=0.05;
@@ -128,7 +130,7 @@ tw=((e1[19]*GearRatio[3]*DiffRatio[3])/2);
 		
 		
 		updateChart(1,hp,tw);	
-		drawSpeedo(180,5,1, 240);
+		//drawSpeedo(180,5,1, 240);
 window.clearInterval(t);
 
 
@@ -144,7 +146,7 @@ v++;
 		}
 		
 		updateChart(rpm,hp,tw);	
-		drawSpeedo(180,5,rpm, 240);
+		//drawSpeedo(180,5,rpm, 240);
 }
 
 }
@@ -163,6 +165,18 @@ window.clearInterval(t);
 
 
 document.getElementById("run").onclick = function() {running()};
+
+ 	document.getElementById("exportChart").addEventListener("click",function(){
+    	chart.exportChart({format: "jpg"});
+    });  
+
+  	document.getElementById("printChart").addEventListener("click",function(){
+    	chart.print();
+    }); 
+	
+	
+	
+	
 }
 		
 	
@@ -250,7 +264,14 @@ margin:5px;
 
 <div class="col-xs-1 col-md-1 col-lg-1 col-sm-1"></div>
 <div class="col-xs-10 col-md-10 col-sm-10 col-lg-10">
-<center><iframe width="75%" height="75%" src="https://www.youtube.com/embed/WxFG06zUUrM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<center>
+
+<center><canvas id="canvas"></canvas></center>
+
+
+<script src="JavaScript.js"></script>
+
+<iframe width="75%" height="75%" src="https://www.youtube.com/embed/WxFG06zUUrM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 		<form name="f"><h1 class ="text">Choose your Car Specifications</h1>
 			<center>
@@ -281,10 +302,10 @@ margin:5px;
 		<div id="chartContainer" style="height: 370px; max-width: 920px; margin: 10px;"></div>
 		
 		<input type="button"  id="run" class="btn btn-warning btn-lg"  value="Run">
-		<center><canvas id="canvas"></canvas></center>
+		 <button id="exportChart">Export Graph</button>
+		   <button id="printChart">Print Graph</button>
 
-
-<script src="JavaScript.js"></script>
+		
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>	
 
 
