@@ -14,7 +14,7 @@
   <script>
 window.onload = function () {
 
-var rpm,hp=0,tw,t,v,php=0,prpm=0;
+var rpm,hp=0,tw,t,v,php=0,prpm=0,ch,e,trans,tyre;
 var e1={0 : 116, 1 : 119, 2 : 123, 3 : 130 , 4 : 136 , 5 : 142 , 6 : 147 , 7 : 153 , 8 : 160 , 9 : 164 , 10 : 170 , 11 : 173 , 12 : 177 , 13 : 181 , 14 : 188 , 15 : 180 , 16 : 171 , 17 : 153 , 18 : 133 , 19 : 122};    //Engine torque at specific  Engine rpm 
 	 
 	 
@@ -122,7 +122,7 @@ updateChart(NaN,NaN,NaN);
 function dyno(){
 rpm+=0.05;
 if(rpm>0.96){
-tw=((e1[19]*GearRatio[3]*DiffRatio[3])/2);
+tw=((e1[19]*GearRatio[trans]*DiffRatio[ch])/2);
 		hp=((tw*(1*10000))/5252);
 		if(hp>php){
 			php=hp;
@@ -137,7 +137,7 @@ window.clearInterval(t);
 
 }
 else{
-tw=parseFloat((e1[v]*GearRatio[3]*DiffRatio[3])/2);
+tw=parseFloat((e1[v]*GearRatio[trans]*DiffRatio[ch])/2);
 v++;
 		
 		hp=((tw*(rpm*10000))/5252);
@@ -155,6 +155,12 @@ v++;
 
 
 function running(){
+
+
+ch=document.getElementById("chassis").value;
+e=document.getElementById("engine").value;
+trans=document.getElementById("trans").value;
+
 
 document.getElementById("exportChart").style.visibility="visible";
 document.getElementById("printChart").style.visibility="visible";
@@ -250,6 +256,14 @@ margin: 8px;
 color:black;
 }	
 
+.btn-lg:hover{
+
+margin: 8px;
+color:black;
+}	
+
+
+
 td{
 margin:5px;
 
@@ -291,34 +305,53 @@ margin:5px;
 <iframe width="75%" height="75%" src="https://www.youtube.com/embed/WxFG06zUUrM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 		<form name="f"><h1 class ="text">Choose your Car Specifications</h1>
-			<center>
-			    
-					<a href="numbers.html" class="btn btn-danger btn-lg">
-						<span class="glyphicon glyphicon-road"></span> Chassis
-						</a>
-					</td>
-					<a  class="btn btn-danger btn-lg" onclick="dyno()">
-						<span class="glyphicon glyphicon-gift"></span> Engine
-						</a></td>
-					<a href="numbers.html" class="btn btn-danger btn-lg">
-						<span class="glyphicon glyphicon-cog"></span> Transmission
-						</a></td></td>
-					<a href="numbers.html" class="btn btn-danger btn-lg">
-						<span class="glyphicon glyphicon-cd"></span> Tyres
-						</a></td></td></td><br>
-						
-						
-						
-
-				
 			
-			</center>
+			<button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-print"></span>
+Chassis <select class="form-control" id="chassis">
+					<option value='1'>Standard Sedan</option>
+					<option value='2'>Racing Chassis</option>
+					<option value='3'>Long bed (SUV)</option>
+					
+			</select></button>
+			
+			
+			<button type="button" class="btn btn-danger btn-lg">Engine <select class="form-control" id="engine">
+					<option value='1'>1000cc Engine</option>
+					<option value='2'>1300cc Engine</option>
+					<option value='3'>1850cc v6 Engine</option>
+					<option value='4'>2700cc v8 Engine</option>
+			</select></button>
+			
+			
+			
+			<button type="button" class="btn btn-danger btn-lg">Transmission <select class="form-control" id="trans">
+					<option value='1'>5-speed Manual</option>
+					<option value='2'>6-speed Manual</option>
+					<option value='3'>6-speed DualClutch</option>
+			</select></button>
+			
+			
+			
+			<button type="button" class="btn btn-danger btn-lg">Tyre <select class="form-control" id="tyre" required>
+					<option value='1'>26 inch Tyres</option>
+					<option value='2'>29 inch Track Tyres</option>
+					<option value='3'>32 inch SUV Tyres</option>
+					<option value='4'>35 inch Offroading</option>
+			</select></button>
+			
+			
+			
+			<button type="button" class="btn  btn-lg" id="run">Done </button>
+			
+			
+
+			
 		</form>
 			
 			
 		<div id="chartContainer" style="height: 370px; max-width: 920px; margin: 10px;"></div>
 		
-		<input type="button"  id="run" class="btn btn-warning btn-lg"  value="Run">
+	
 		 <button id="exportChart" class="btn btn-warning btn-lg">Export Graph</button>
 		   <button id="printChart" class="btn btn-warning btn-lg">Print Graph</button>
 
