@@ -227,31 +227,62 @@ let dev = false;
         }
         var s=0;
         
+		var r=0.1, t1,t2;
 		
 		
-		function dyno(){
+		
+		function downspeed(){
 			
-				
-			var tw,hp;
-			drawSpeedo(180,5, .2, 240);
+
+			if(s<2){
+				window.clearInterval(t2);
+				 
+
+			}
+			else{
+			s-=2;
+			r-=0.075;
+			
+			drawSpeedo(s,6, r, 180);
+			
+			}
 			
 			
-			//for(var rpm in e1){
-				
-			//tw=((e1[rpm]*GearRatio[2]*DiffRatio[2])/2);
-			//hp=((tw*(rpm*10000))/5252);
-			//updateChart(rpm,hp,tw);	
+			
+		}
+		
+		
+		
+		
+		
+		function setSpeed(){
 			
 			
 			
-			//}
+			if(s>176){
+				window.clearInterval(t1);
+				t2= window.setInterval(downspeed, 50);
+				 renderCanvas();
+
+			}
+			
+			else{
+			
+			s+=2;
+			r+=0.075;
+			drawSpeedo(s,6, r, 180);
+		
+			}
+			
+			
+			
 		}
 		
 
 
 document.addEventListener('DOMContentLoaded', function() {
-	drawSpeedo(180,5, .2, 240);
-    window.setInterval(setSpeed, 100);
+	//drawSpeedo(180,5, .2, 240);
+   t1= window.setInterval(setSpeed, 50);
 	
     renderCanvas();
 	
