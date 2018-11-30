@@ -14,14 +14,14 @@
   <script>
 window.onload = function () {
 
-var rpm,hp=0,tw,t,v,php=0,prpm=0,ch,e,trans,tyre;
+var rpm,hp=0,tw,t,v,php=0,prpm=0,ch,e,trans,tyre,valu;
 var e1={0 : 116, 1 : 119, 2 : 123, 3 : 130 , 4 : 136 , 5 : 142 , 6 : 147 , 7 : 153 , 8 : 160 , 9 : 164 , 10 : 170 , 11 : 173 , 12 : 177 , 13 : 181 , 14 : 188 , 15 : 180 , 16 : 171 , 17 : 153 , 18 : 133 , 19 : 122};    //Engine torque at specific  Engine rpm 
 
-var e2={0 : 116, 1 : 119, 2 : 123, 3 : 130 , 4 : 136 , 5 : 142 , 6 : 147 , 7 : 153 , 8 : 160 , 9 : 164 , 10 : 170 , 11 : 173 , 12 : 177 , 13 : 181 , 14 : 188 , 15 : 180 , 16 : 171 , 17 : 153 , 18 : 133 , 19 : 122};    //Engine torque at specific  Engine rpm 
+var e2={0 : 110, 1 : 123, 2 : 125, 3 : 133 , 4 : 159 , 5 : 160 , 6 : 163 , 7 : 169 , 8 : 175 , 9 : 180 , 10 : 200 , 11 : 222 , 12 : 205 , 13 : 186 , 14 : 172 , 15 : 146 , 16 : 137 , 17 : 133 , 18 : 121 , 19 : 110};    //Engine torque at specific  Engine rpm 
 
-var e3={0 : 116, 1 : 119, 2 : 123, 3 : 130 , 4 : 136 , 5 : 142 , 6 : 147 , 7 : 153 , 8 : 160 , 9 : 164 , 10 : 170 , 11 : 173 , 12 : 177 , 13 : 181 , 14 : 188 , 15 : 180 , 16 : 171 , 17 : 153 , 18 : 133 , 19 : 122};    //Engine torque at specific  Engine rpm 
+var e3={0 : 116, 1 : 119, 2 : 123, 3 : 130 , 4 : 136 , 5 : 142 , 6 : 147 , 7 : 153 , 8 : 160 , 9 : 164 , 10 : 190 , 11 : 193 , 12 : 205 , 13 : 210 , 14 : 226 , 15 : 211 , 16 : 181 , 17 : 173 , 18 : 163 , 19 : 132};    //Engine torque at specific  Engine rpm 
 
-var e4={0 : 116, 1 : 119, 2 : 123, 3 : 130 , 4 : 136 , 5 : 142 , 6 : 147 , 7 : 153 , 8 : 160 , 9 : 164 , 10 : 170 , 11 : 173 , 12 : 177 , 13 : 181 , 14 : 188 , 15 : 180 , 16 : 171 , 17 : 153 , 18 : 133 , 19 : 122};    //Engine torque at specific  Engine rpm 
+var e4={0 : 130, 1 : 182, 2 : 200, 3 : 230 , 4 : 300 , 5 : 249 , 6 : 325 , 7 : 345 , 8 : 392 , 9 : 400 , 10 : 481 , 11 : 532 , 12 : 596 , 13 : 692 , 14 : 735 , 15 : 668 , 16 : 411 , 17 : 259 , 18 : 133 , 19 : 122};    //Engine torque at specific  Engine rpm 
 	 
 	 
 	 var GearRatio={1:0.89, 2:1.1,3:1.17};                        // Transmission Gear ratio
@@ -128,7 +128,7 @@ updateChart(NaN,NaN,NaN);
 function dyno(){
 rpm+=0.05;
 if(rpm>0.96){
-tw=((e1[19]*GearRatio[trans]*DiffRatio[ch])/2);
+tw=((e[19]*GearRatio[trans]*DiffRatio[ch])/2);
 		hp=((tw*(1*10000))/5252);
 		if(hp>php){
 			php=hp;
@@ -143,7 +143,7 @@ window.clearInterval(t);
 
 }
 else{
-tw=parseFloat((e1[v]*GearRatio[trans]*DiffRatio[ch])/2);
+tw=parseFloat((e[v]*GearRatio[trans]*DiffRatio[ch])/2);
 v++;
 		
 		hp=((tw*(rpm*10000))/5252);
@@ -164,7 +164,13 @@ function running(){
 
 
 ch=document.getElementById("chassis").value;
-e=document.getElementById("engine").value;
+valu=0;
+valu=document.getElementById("engine").value;
+if(valu==1){e=e1;}
+if(valu==2){e=e2;}
+if(valu==3){e=e3;}
+if(valu==4){e=e4;}
+
 trans=document.getElementById("trans").value;
 
 
