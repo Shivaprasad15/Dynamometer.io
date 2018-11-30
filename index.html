@@ -16,10 +16,16 @@ window.onload = function () {
 
 var rpm,hp=0,tw,t,v,php=0,prpm=0,ch,e,trans,tyre;
 var e1={0 : 116, 1 : 119, 2 : 123, 3 : 130 , 4 : 136 , 5 : 142 , 6 : 147 , 7 : 153 , 8 : 160 , 9 : 164 , 10 : 170 , 11 : 173 , 12 : 177 , 13 : 181 , 14 : 188 , 15 : 180 , 16 : 171 , 17 : 153 , 18 : 133 , 19 : 122};    //Engine torque at specific  Engine rpm 
+
+var e2={0 : 116, 1 : 119, 2 : 123, 3 : 130 , 4 : 136 , 5 : 142 , 6 : 147 , 7 : 153 , 8 : 160 , 9 : 164 , 10 : 170 , 11 : 173 , 12 : 177 , 13 : 181 , 14 : 188 , 15 : 180 , 16 : 171 , 17 : 153 , 18 : 133 , 19 : 122};    //Engine torque at specific  Engine rpm 
+
+var e3={0 : 116, 1 : 119, 2 : 123, 3 : 130 , 4 : 136 , 5 : 142 , 6 : 147 , 7 : 153 , 8 : 160 , 9 : 164 , 10 : 170 , 11 : 173 , 12 : 177 , 13 : 181 , 14 : 188 , 15 : 180 , 16 : 171 , 17 : 153 , 18 : 133 , 19 : 122};    //Engine torque at specific  Engine rpm 
+
+var e4={0 : 116, 1 : 119, 2 : 123, 3 : 130 , 4 : 136 , 5 : 142 , 6 : 147 , 7 : 153 , 8 : 160 , 9 : 164 , 10 : 170 , 11 : 173 , 12 : 177 , 13 : 181 , 14 : 188 , 15 : 180 , 16 : 171 , 17 : 153 , 18 : 133 , 19 : 122};    //Engine torque at specific  Engine rpm 
 	 
 	 
-	 var GearRatio={1:0.89, 2:1.1,3:1.89};                        // Transmission Gear ratio
-	 var DiffRatio={1:3.960, 2:2.462,3:4.029};                     // Differential Gear ratio
+	 var GearRatio={1:0.89, 2:1.1,3:1.17};                        // Transmission Gear ratio
+	 var DiffRatio={1:1.5, 2:1.85,3:1.3};                     // Differential Gear ratio
 	 var Tyre={1:0.3302, 2:0.3683, 3:0.4064, 4:0.4445};           // Tyre Size
 
  
@@ -254,7 +260,7 @@ var s=0;
 
 margin: 10px;
 color:black;
-margin-bottom:5px;
+margin-bottom:15px;
 }	
 
 .btn-lg:hover{
@@ -342,7 +348,7 @@ Chassis <select class="form-control" id="chassis">
 			
 			
 			
-			<button type="button" class="btn  btn-lg" id="run">Done </button>
+			<button type="button" class="btn  btn-lg btn-success" id="run">Done </button>
 			
 			
 
