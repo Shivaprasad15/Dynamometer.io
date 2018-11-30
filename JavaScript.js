@@ -241,7 +241,8 @@ let dev = false;
 			}
 			else{
 			s-=2;
-			r-=0.075;
+			if(r>0.18){
+			r-=0.055;}
 			
 			drawSpeedo(s,6, r, 180);
 			
@@ -269,7 +270,8 @@ let dev = false;
 			else{
 			
 			s+=2;
-			r+=0.075;
+			if(s<=40){
+			r+=0.055;}
 			drawSpeedo(s,6, r, 180);
 		
 			}
