@@ -287,13 +287,15 @@ margin:5px;
     </div>
     
 	<ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      
+      <li><a href="http://www.dynojet.com/products/dynamometers/default.aspx"><span class="glyphicon glyphicon-log-in"></span>About</a></li>
     </ul>
 	
 	<ul class="nav navbar-nav navbar-right">
       <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Page 1</a></li>
+      <li><a href="#youtube">Video</a></li>
+	  <li><a href="#ff">Build Car</a></li>
+	  
       
     </ul>
     
@@ -309,12 +311,11 @@ margin:5px;
 
 <script src="JavaScript.js"></script>
 
-<iframe width="75%" height="75%" src="https://www.youtube.com/embed/WxFG06zUUrM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="75%" id="youtube" height="75%" src="https://www.youtube.com/embed/WxFG06zUUrM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-		<form name="f"><h1 class ="text">Choose your Car Specifications</h1>
+		<form name="f"  id="ff"><h1 class ="text">Choose your Car Specifications</h1>
 			
-			<button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-print"></span>
-Chassis <select class="form-control" id="chassis">
+			<button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-road"></span>Chassis <select class="form-control" id="chassis">
 					<option value='1'>Standard Sedan</option>
 					<option value='2'>Racing Chassis</option>
 					<option value='3'>Long bed (SUV)</option>
@@ -322,7 +323,7 @@ Chassis <select class="form-control" id="chassis">
 			</select></button>
 			
 			
-			<button type="button" class="btn btn-danger btn-lg">Engine <select class="form-control" id="engine">
+			<button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-gift"></span>Engine <select class="form-control" id="engine">
 					<option value='1'>1000cc Engine</option>
 					<option value='2'>1300cc Engine</option>
 					<option value='3'>1850cc v6 Engine</option>
@@ -331,7 +332,7 @@ Chassis <select class="form-control" id="chassis">
 			
 			
 			
-			<button type="button" class="btn btn-danger btn-lg">Transmission <select class="form-control" id="trans">
+			<button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-cog"></span>Transmission <select class="form-control" id="trans">
 					<option value='1'>5-speed Manual</option>
 					<option value='2'>6-speed Manual</option>
 					<option value='3'>6-speed DualClutch</option>
@@ -339,7 +340,7 @@ Chassis <select class="form-control" id="chassis">
 			
 			
 			
-			<button type="button" class="btn btn-danger btn-lg">Tyre <select class="form-control" id="tyre" required>
+			<button type="button" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-cd"></span>Tyre <select class="form-control" id="tyre" required>
 					<option value='1'>26 inch Tyres</option>
 					<option value='2'>29 inch Track Tyres</option>
 					<option value='3'>32 inch SUV Tyres</option>
@@ -348,7 +349,7 @@ Chassis <select class="form-control" id="chassis">
 			
 			
 			
-			<button type="button" class="btn  btn-lg btn-success" id="run">Done </button>
+			<button type="button" class="btn  btn-lg btn-success" id="run"><span class="glyphicon glyphicon-off"></span> Start Engine</button>
 			
 			
 
@@ -359,8 +360,8 @@ Chassis <select class="form-control" id="chassis">
 		<div id="chartContainer" style="height: 370px; max-width: 920px; margin: 10px;"></div>
 		
 	
-		 <button id="exportChart" class="btn btn-warning btn-md">Export Graph</button>
-		   <button id="printChart" class="btn btn-warning btn-md">Print Graph</button>
+		 <button id="exportChart" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-cloud-download"></span>Download</button>
+		   <button id="printChart" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-print"></span>Print Graph</button>
 
 		
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>	
