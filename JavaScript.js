@@ -270,8 +270,8 @@ let dev = false;
 			else{
 			
 			s+=2;
-			if(s<=40){
-			r+=0.055;}
+			if(r<=1){
+			r+=0.04;}
 			drawSpeedo(s,6, r, 180);
 		
 			}
