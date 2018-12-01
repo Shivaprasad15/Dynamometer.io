@@ -131,7 +131,7 @@ let dev = false;
             ctx.arc(250, 250, 240, 0, 2 * Math.PI);
             ctx.stroke();
 
-            ctx.font = "italic bold 90px Digital-7";
+            ctx.font = "italic 90px Digital-7";
 			ctx.fillStyle = "#2CC814";
             ctx.textAlign = "center";
             ctx.fillText(speed, 250, 250);
