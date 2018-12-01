@@ -131,35 +131,28 @@ let dev = false;
             ctx.arc(250, 250, 240, 0, 2 * Math.PI);
             ctx.stroke();
 
-            ctx.font = "70px Digital-7 Italic";
+            ctx.font = "italic bold 90px Digital-7";
+			ctx.fillStyle = "#2CC814";
             ctx.textAlign = "center";
-            ctx.fillText(speed, 250, 220);
+            ctx.fillText(speed, 250, 250);
 
-            ctx.font = "15px MuseoSans_900-webfont";
-            ctx.fillText("Kmph", 250, 235);
+            ctx.font = "bold 16px sans-serif";
+            ctx.fillText("Kmph", 250, 270);
 
-            if (gear == 0 && speed > 0) {
-                ctx.fillStyle = "#999";
-                ctx.font = "70px MuseoSans_900-webfont";
-                ctx.fillText('R', 250, 460);
-
-                ctx.fillStyle = "#333";
-                ctx.font = "50px MuseoSans_900-webfont";
-                ctx.fillText('N', 290, 460);
-            } else if (gear == 0 && speed == 0) {
-                ctx.fillStyle = "#999";
-                ctx.font = "70px MuseoSans_900-webfont";
+            if (gear == 0) {
+                ctx.fillStyle = "#F32A24";
+                ctx.font = "70px Digital-7";
                 ctx.fillText('N', 250, 460);
 
                 ctx.fillStyle = "#333";
-                ctx.font = "50px MuseoSans_900-webfont";
+                ctx.font = "50px Digital-7";
                 ctx.fillText('R', 210, 460);
 
-                ctx.font = "50px MuseoSans_900-webfont";
+                ctx.font = "50px Digital-7";
                 ctx.fillText(parseInt(gear) + 1, 290, 460);
             } else if (gear - 1 <= 0) {
-                ctx.fillStyle = "#999";
-                ctx.font = "70px MuseoSans_900-webfont";
+                ctx.fillStyle = "#F32A24";
+                ctx.font = "70px sans-serif";
                 ctx.fillText(gear, 250, 460);
 
                 ctx.fillStyle = "#333";
@@ -169,15 +162,15 @@ let dev = false;
                 ctx.font = "50px MuseoSans_900-webfont";
                 ctx.fillText(parseInt(gear) + 1, 290, 460);
             } else {
-                ctx.font = "70px MuseoSans_900-webfont";
-                ctx.fillStyle = "#999";
+                ctx.font = "70px Digital-7";
+                ctx.fillStyle = "#F32A24";
                 ctx.fillText(gear, 250, 460);
 
-                ctx.font = "50px MuseoSans_900-webfont";
+                ctx.font = "50px Digital-7";
                 ctx.fillStyle = "#333";
                 ctx.fillText(gear - 1, 210, 460);
                 if (parseInt(gear) + 1 < 7) {
-                    ctx.font = "50px MuseoSans_900-webfont";
+                    ctx.font = "50px Digital-7";
                     ctx.fillText(parseInt(gear) + 1, 290, 460);
                 }
             }
@@ -244,7 +237,7 @@ let dev = false;
 			if(r>0.18){
 			r-=0.055;}
 			
-			drawSpeedo(s,6, r, 180);
+			drawSpeedo(s,0, r, 180);
 			
 			}
 			
@@ -272,7 +265,7 @@ let dev = false;
 			s+=2;
 			if(r<=1){
 			r+=0.04;}
-			drawSpeedo(s,6, r, 180);
+			drawSpeedo(s,0, r, 180);
 		
 			}
 			
