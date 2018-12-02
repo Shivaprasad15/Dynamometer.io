@@ -111,8 +111,8 @@ function updateChart(r,h,t) {
 	
 
 	// updating legend text with  updated with y Value 
-	chart.options.data[0].legendText = "Peak HP " + php;
-	chart.options.data[1].legendText = "Torque " + tw + " Nm"; 
+	chart.options.data[0].legendText = "Peak HP " + parseInt(php);
+	chart.options.data[1].legendText = "Torque " + parseInt(tw) + " Nm"; 
 	chart.render();
 }
 
