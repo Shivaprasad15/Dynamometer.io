@@ -255,7 +255,7 @@ let dev = false;
 			
 			if(s>176){
 				window.clearInterval(t1);
-				t2= window.setInterval(downspeed, 50);
+				t2= window.setInterval(downspeed, 40);
 				 renderCanvas();
 
 			}
@@ -277,7 +277,7 @@ let dev = false;
 
 document.addEventListener('DOMContentLoaded', function() {
 	//drawSpeedo(180,5, .2, 240);
-   t1= window.setInterval(setSpeed, 50);
+   t1= window.setInterval(setSpeed, 30);
 	
     renderCanvas();
 	
